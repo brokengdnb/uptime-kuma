@@ -43,6 +43,7 @@ export default {
             }*/
             let key = this.monitor.id;
 
+
             if (this.$root.heartbeatList[key] !== undefined) {
                 const average = array => (array && array.length) ? (array.reduce((sum, item) => sum + item, 0) / array.length) : undefined;
 
@@ -52,14 +53,10 @@ export default {
                 });
 
                 // Only perform sanity check on status page. See louislam/uptime-kuma#2628
-                if (this.$route.path.startsWith("/status") && result > 100) {
-                    return "0";
-                } else {
+               
                     return average(data) + "%";
-                }
+                
             }
-
-            
         },
 
         uptime() {
