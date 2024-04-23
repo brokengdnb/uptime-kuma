@@ -35,27 +35,30 @@
                                 <div class="row">
                                     <div class="col-9 col-md-8 small-padding">
                                         <div class="info">
-                                            <font-awesome-icon v-if="editMode" icon="arrows-alt-v" class="action drag me-3" />
-                                            <font-awesome-icon v-if="editMode" icon="times" class="action remove me-3" @click="removeMonitor(group.index, monitor.index)" />
+                                            <div>
+                                                <font-awesome-icon v-if="editMode" icon="arrows-alt-v" class="action drag me-3" />
+                                                <font-awesome-icon v-if="editMode" icon="times" class="action remove me-3" @click="removeMonitor(group.index, monitor.index)" />
 
-                                            <Uptime :monitor="monitor.element" type="24" :pill="true" />
-                                            <a v-if="showLink(monitor)"
-                                               :href="monitor.element.url"
-                                               class="item-name"
-                                               target="_blank"
-                                               rel="noopener noreferrer">
-                                                {{ monitor.element.name }}
-                                            </a>
-                                            <p v-else class="item-name"> {{ monitor.element.name }} </p>
+                                                <Uptime :monitor="monitor.element" type="24" :pill="true" />
+                                                <a v-if="showLink(monitor)"
+                                                   :href="monitor.element.url"
+                                                   class="item-name"
+                                                   target="_blank"
+                                                   rel="noopener noreferrer">
+                                                    {{ monitor.element.name }}
+                                                </a>
+                                                <p v-else class="item-name"> {{ monitor.element.name }} </p>
 
-                                            
 
-                                            <span title="Setting">
-                                                <font-awesome-icon v-if="editMode"
-                                                                   :class="{'link-active': true, 'btn-link': true}"
-                                                                   icon="cog" class="action me-3"
-                                                                   @click="$refs.monitorSettingDialog.show(group, monitor)" />
-                                            </span>
+
+                                                <span title="Setting">
+                                                    <font-awesome-icon v-if="editMode"
+                                                                       :class="{'link-active': true, 'btn-link': true}"
+                                                                       icon="cog" class="action me-3"
+                                                                       @click="$refs.monitorSettingDialog.show(group, monitor)" />
+                                                </span>
+                                            </div>
+                                            <Responsetime :monitor="monitor.element" type="720" :pill="true" />
                                         </div>
                                         <div class="extra-info">
                                             <div v-if="showCertificateExpiry && monitor.element.certExpiryDaysRemaining">
@@ -64,7 +67,6 @@
                                             <div v-if="showTags">
                                                 <Tag v-for="tag in monitor.element.tags" :key="tag" :item="tag" :size="'sm'" />
                                             </div>
-                                            <Responsetime :monitor="monitor.element" type="720" :pill="true" />
                                         </div>
                                     </div>
                                     <div :key="$root.userHeartbeatBar" class="col-3 col-md-4">

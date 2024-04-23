@@ -54,46 +54,37 @@ export default {
 
                 // Only perform sanity check on status page. See louislam/uptime-kuma#2628
                
-                    return average(data) + "%";
+                return average(data).toString().split(".")[1] + " ms";
                 
             }
         },
 
-        uptime() {
-            if (this.type === "maintenance") {
-                return this.$t("statusMaintenance");
-            }
-
-            let key = this.monitor.id + "_" + this.type;
-
-            if (this.$root.uptimeList[key] !== undefined) {
-                let result = Math.round(this.$root.uptimeList[key] * 10000) / 100;
-                // Only perform sanity check on status page. See louislam/uptime-kuma#2628
-                if (this.$route.path.startsWith("/status") && result > 100) {
-                    return "100%";
-                } else {
-                    return result + "%";
-                }
-            }
-
-            return this.$t("notAvailableShort");
-        },
-
         color() {
-            if (this.lastHeartBeat.status === MAINTENANCE) {
-                return "maintenance";
-            }
 
-            if (this.lastHeartBeat.status === DOWN) {
-                return "danger";
-            }
+            let key = this.monitor.id;
+            let responseTime = ""
 
-            if (this.lastHeartBeat.status === UP) {
-                return "primary";
-            }
+            if (this.$root.heartbeatList[key] !== undefined) {
+                const average = array => (array && array.length) ? (array.reduce((sum, item) => sum + item, 0) / array.length) : undefined;
 
-            if (this.lastHeartBeat.status === PENDING) {
-                return "warning";
+                var data = this.$root.heartbeatList[key].map(function (el, i) {
+                    return el.ping
+                });
+
+                // Only perform sanity check on status page. See louislam/uptime-kuma#2628
+                responseTime = average(data).toString().split(".")[1].toNumber();
+
+                if (responseTime > 500) {
+                    return "danger";
+                }
+
+                if (responseTime <= 100) {
+                    return "primary";
+                }
+
+                if (responseTime <= 500) {
+                    return "warning";
+                }
             }
 
             return "secondary";
