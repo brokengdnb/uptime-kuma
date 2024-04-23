@@ -63,19 +63,18 @@ export default {
             let key = this.monitor.id;
 
             console.log(this.$root.heartbeatList[key]);
+            var data = this.$root.heartbeatList[key].map(function (el, i) {
+                return el.ping
+            });
 
-            if (this.$root.heartbeatList[key] !== undefined) {
+            if (data.length > 0) {
                 const average = array => (array && array.length) ? (array.reduce((sum, item) => sum + item, 0) / array.length) : undefined;
 
-                var data = this.$root.heartbeatList[key].map(function (el, i) {
-                    return el.ping
-                });
-
-                console.log(data);
-                console.log(average);
+      
+                console.log(average(data).toString().split(".")[1]);
 
                 // Only perform sanity check on status page. See louislam/uptime-kuma#2628
-                return 150;//average(data).toString().split(".")[1].toNumber();
+                return average(data).toString().split(".")[1];//average(data).toString().split(".")[1].toNumber();
             }
 
             return -1;
