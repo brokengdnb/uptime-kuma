@@ -48,7 +48,7 @@
                                             </a>
                                             <p v-else class="item-name"> {{ monitor.element.name }} </p>
 
-                                            <Responsetime :monitor="monitor.element" type="720" :pill="true" />
+                                            <Uptime :monitor="monitor.element" type="720" :pill="true" />
 
                                             <span title="Setting">
                                                 <font-awesome-icon v-if="editMode"
