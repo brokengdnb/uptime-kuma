@@ -38,27 +38,23 @@
                                             <font-awesome-icon v-if="editMode" icon="arrows-alt-v" class="action drag me-3" />
                                             <font-awesome-icon v-if="editMode" icon="times" class="action remove me-3" @click="removeMonitor(group.index, monitor.index)" />
 
-                                            <Uptime :monitor="monitor.element" type="24" :pill="true" />
-                                            <a
-                                                v-if="showLink(monitor)"
-                                                :href="monitor.element.url"
-                                                class="item-name"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
+                                            <Uptime :monitor="monitor.element" type="720" :pill="true" />
+                                            <a v-if="showLink(monitor)"
+                                               :href="monitor.element.url"
+                                               class="item-name"
+                                               target="_blank"
+                                               rel="noopener noreferrer">
                                                 {{ monitor.element.name }}
                                             </a>
                                             <p v-else class="item-name"> {{ monitor.element.name }} </p>
 
-                                            <span
-                                                title="Setting"
-                                            >
-                                                <font-awesome-icon
-                                                    v-if="editMode"
-                                                    :class="{'link-active': true, 'btn-link': true}"
-                                                    icon="cog" class="action me-3"
-                                                    @click="$refs.monitorSettingDialog.show(group, monitor)"
-                                                />
+                                            <Responsetime :monitor="monitor.element" type="720" :pill="true" />
+
+                                            <span title="Setting">
+                                                <font-awesome-icon v-if="editMode"
+                                                                   :class="{'link-active': true, 'btn-link': true}"
+                                                                   icon="cog" class="action me-3"
+                                                                   @click="$refs.monitorSettingDialog.show(group, monitor)" />
                                             </span>
                                         </div>
                                         <div class="extra-info">
@@ -89,6 +85,7 @@ import MonitorSettingDialog from "./MonitorSettingDialog.vue";
 import Draggable from "vuedraggable";
 import HeartbeatBar from "./HeartbeatBar.vue";
 import Uptime from "./Uptime.vue";
+import Responsetime from "./Responsetime.vue";
 import Tag from "./Tag.vue";
 
 export default {
@@ -97,6 +94,7 @@ export default {
         Draggable,
         HeartbeatBar,
         Uptime,
+        Responsetime,
         Tag,
     },
     props: {
