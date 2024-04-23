@@ -30,7 +30,7 @@ export default {
                 return this.$t("statusMaintenance");
             }
 
-            let key = this.monitor.id + "_" + this.type;
+            let key = this.monitor.id;
 
             if (this.$root.uptimeList[key] !== undefined) {
                 let result = Math.round(this.$root.uptimeList[key] * 10000) / 100;
@@ -41,8 +41,25 @@ export default {
                     return result + "%";
                 }
             }*/
+            let key = this.monitor.id;
 
-            return "test";
+            if (this.$root.heartbeatList[key] !== undefined) {
+                const average = array => (array && array.length) ? (array.reduce((sum, item) => sum + item, 0) / array.length) : undefined;
+
+                var data = this.$root.heartbeatList[key].map(function (el, i) {
+                    return el.ping
+                    
+                });
+
+                // Only perform sanity check on status page. See louislam/uptime-kuma#2628
+                if (this.$route.path.startsWith("/status") && result > 100) {
+                    return "0";
+                } else {
+                    return average(data) + "%";
+                }
+            }
+
+            
         },
 
         uptime() {
@@ -104,7 +121,7 @@ export default {
         },
 
         title() {
-            if (this.type === "1y") {
+            if (this.type === "ms") {
                 return "response time";
             }
             if (this.type === "1y") {

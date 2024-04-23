@@ -38,7 +38,7 @@
                                             <font-awesome-icon v-if="editMode" icon="arrows-alt-v" class="action drag me-3" />
                                             <font-awesome-icon v-if="editMode" icon="times" class="action remove me-3" @click="removeMonitor(group.index, monitor.index)" />
 
-                                            <Uptime :monitor="monitor.element" type="720" :pill="true" />
+                                            <Uptime :monitor="monitor.element" type="24" :pill="true" />
                                             <a v-if="showLink(monitor)"
                                                :href="monitor.element.url"
                                                class="item-name"
@@ -48,7 +48,7 @@
                                             </a>
                                             <p v-else class="item-name"> {{ monitor.element.name }} </p>
 
-                                            <Uptime :monitor="monitor.element" type="720" :pill="true" />
+                                            
 
                                             <span title="Setting">
                                                 <font-awesome-icon v-if="editMode"
@@ -64,6 +64,7 @@
                                             <div v-if="showTags">
                                                 <Tag v-for="tag in monitor.element.tags" :key="tag" :item="tag" :size="'sm'" />
                                             </div>
+                                            <Responsetime :monitor="monitor.element" type="720" :pill="true" />
                                         </div>
                                     </div>
                                     <div :key="$root.userHeartbeatBar" class="col-3 col-md-4">
