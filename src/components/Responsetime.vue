@@ -60,9 +60,23 @@ export default {
         },
 
         color() {
+            if (this.lastHeartBeat > 500) {
+                return "danger";
+            }
 
+            if (this.lastHeartBeat <= 100) {
+                return "primary";
+            }
+
+            if (this.lastHeartBeat <= 500) {
+                return "warning";
+            }
+
+            return "secondary";
+        },
+
+        lastHeartBeat() {
             let key = this.monitor.id;
-            let responseTime = ""
 
             if (this.$root.heartbeatList[key] !== undefined) {
                 const average = array => (array && array.length) ? (array.reduce((sum, item) => sum + item, 0) / array.length) : undefined;
@@ -72,32 +86,10 @@ export default {
                 });
 
                 // Only perform sanity check on status page. See louislam/uptime-kuma#2628
-                responseTime = average(data).toString().split(".")[1].toNumber();
-
-                if (responseTime > 500) {
-                    return "danger";
-                }
-
-                if (responseTime <= 100) {
-                    return "primary";
-                }
-
-                if (responseTime <= 500) {
-                    return "warning";
-                }
+                return average(data).toString().split(".")[1].toNumber();
             }
 
-            return "secondary";
-        },
-
-        lastHeartBeat() {
-            if (this.monitor.id in this.$root.lastHeartbeatList && this.$root.lastHeartbeatList[this.monitor.id]) {
-                return this.$root.lastHeartbeatList[this.monitor.id];
-            }
-
-            return {
-                status: -1,
-            };
+            return -1;
         },
 
         className() {

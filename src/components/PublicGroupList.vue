@@ -58,7 +58,7 @@
                                                                        @click="$refs.monitorSettingDialog.show(group, monitor)" />
                                                 </span>
                                             </div>
-                                            <Responsetime :monitor="monitor.element" type="720" :pill="true" />
+                                            <Responsetime :monitor="monitor.element" type="ms" :pill="true" />
                                         </div>
                                         <div class="extra-info">
                                             <div v-if="showCertificateExpiry && monitor.element.certExpiryDaysRemaining">
