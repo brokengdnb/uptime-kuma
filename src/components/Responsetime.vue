@@ -26,25 +26,26 @@ export default {
 
     computed: {
         response() {
+            const average = array => (array && array.length) ? (array.reduce((sum, item) => sum + item, 0) / array.length) : undefined;
             let key = this.monitor.id;
 
             if (this.$root.heartbeatList[key] !== undefined) {
-                const average = array => (array && array.length) ? (array.reduce((sum, item) => sum + item, 0) / array.length) : undefined;
 
                 var data = this.$root.heartbeatList[key].map(function (el, i) {
-                    return el.ping
-                    
+                    return el.ping;
                 });
+
+                console.log(data);
 
                 // Only perform sanity check on status page. See louislam/uptime-kuma#2628
                
-                return average(data).toString().split(".")[1] + " ms";
+                return 150;// average(data).toString().split(".")[1] + " ms";
                 
             }
         },
 
         color() {
-            if (this.lastHeartBeat > 500) {
+         /*   if (this.lastHeartBeat > 500) {
                 return "danger";
             }
 
@@ -54,7 +55,7 @@ export default {
 
             if (this.lastHeartBeat <= 500) {
                 return "warning";
-            }
+            }*/
 
             return "secondary";
         },
