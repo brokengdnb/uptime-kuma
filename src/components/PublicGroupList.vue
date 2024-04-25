@@ -33,13 +33,14 @@
                         <template #item="monitor">
                             <div class="item">
                                 <div class="row">
-                                    <div class="col-9 col-md-8 small-padding">
+                                    <div class="col-3 col-md-4 small-padding">
                                         <div class="info">
                                             <div>
                                                 <font-awesome-icon v-if="editMode" icon="arrows-alt-v" class="action drag me-3" />
                                                 <font-awesome-icon v-if="editMode" icon="times" class="action remove me-3" @click="removeMonitor(group.index, monitor.index)" />
 
-                                                <Uptime :monitor="monitor.element" type="24" :pill="true" />
+                                                <Responsetime :monitor="monitor.element" type="ms" :pill="true" />
+
                                                 <a v-if="showLink(monitor)"
                                                    :href="monitor.element.url"
                                                    class="item-name"
@@ -59,7 +60,6 @@
                                                 </span>
                                             </div>
                                             <div>
-                                                <Responsetime :monitor="monitor.element" type="ms" :pill="true" />
                                             </div>
                                         </div>
                                         <div class="extra-info">
@@ -71,7 +71,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div :key="$root.userHeartbeatBar" class="col-3 col-md-4">
+                                    <div :key="$root.userHeartbeatBar" class="col-9 col-md-8">
+                                        <Uptime :monitor="monitor.element" type="24" :pill="true" />
                                         <HeartbeatBar size="mid" :monitor-id="monitor.element.id" />
                                     </div>
                                 </div>

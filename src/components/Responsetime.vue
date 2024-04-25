@@ -37,7 +37,7 @@ export default {
 
                 if (data.length > 0) {
                     console.log(average(data));
-                    return average(data);
+                    return average(data).toString().split(".")[1] + " ms";
                 }
                 
 
@@ -61,7 +61,7 @@ export default {
                 return "warning";
             }*/
 
-            return "secondary";
+            return "primary";
         },
 
         lastHeartBeat() {
