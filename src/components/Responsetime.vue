@@ -37,14 +37,10 @@ export default {
 
                 if (data.length > 0) {
                     console.log(average(data));
-                    return average(data).toString().split(".")[1] + " ms";
+                    return average(data).toString().split(".")[0] + " ms";
+                } else {
+                    return "..."
                 }
-                
-
-                // Only perform sanity check on status page. See louislam/uptime-kuma#2628
-               
-                return null;// average(data).toString().split(".")[1] + " ms";
-                
             }
         },
 
