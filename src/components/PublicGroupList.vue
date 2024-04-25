@@ -33,13 +33,13 @@
                         <template #item="monitor">
                             <div class="item">
                                 <div class="row">
-                                    <div class="col-9 col-md-8 small-padding">
+                                    <div class="col-8 col-md-7 small-padding">
                                         <div class="info">
                                             <div>
                                                 <font-awesome-icon v-if="editMode" icon="arrows-alt-v" class="action drag me-3" />
                                                 <font-awesome-icon v-if="editMode" icon="times" class="action remove me-3" @click="removeMonitor(group.index, monitor.index)" />
 
-                                                <Responsetime :monitor="monitor.element" type="ms" :pill="true" />
+                                                <Responsetime :monitor="monitor.element" type="ms" :pill="true" style="margin-right: 8px"/>
 
                                                 <a v-if="showLink(monitor)"
                                                    :href="monitor.element.url"
@@ -49,8 +49,6 @@
                                                     {{ monitor.element.name }}
                                                 </a>
                                                 <p v-else class="item-name"> {{ monitor.element.name }} </p>
-
-
 
                                                 <span title="Setting">
                                                     <font-awesome-icon v-if="editMode"
@@ -71,8 +69,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div :key="$root.userHeartbeatBar" class="col-3 col-md-4" >
+                                    <div class="col-1 col-md-1 small-padding">
                                         <Uptime :monitor="monitor.element" type="24" :pill="true" />
+                                    </div>
+                                    <div :key="$root.userHeartbeatBar" class="col-3 col-md-4">
                                         <HeartbeatBar size="mid" :monitor-id="monitor.element.id" />
                                     </div>
                                 </div>
