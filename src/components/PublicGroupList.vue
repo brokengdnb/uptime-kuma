@@ -33,7 +33,7 @@
                         <template #item="monitor">
                             <div class="item">
                                 <div class="row">
-                                    <div class="col-7 col-md-7 small-padding">
+                                    <div class="col-7 col-sm-7 col-md-7 small-padding">
                                         <div class="info">
                                             <div>
                                                 <font-awesome-icon v-if="editMode" icon="arrows-alt-v" class="action drag me-3" />
@@ -69,10 +69,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-2 col-md-1 small-padding">
+                                    <div class="col-2 col-sm-2 col-md-1 small-padding">
                                         <Uptime :monitor="monitor.element" type="24" :pill="true" />
                                     </div>
-                                    <div :key="$root.userHeartbeatBar" class="col-3 col-md-4">
+                                    <div :key="$root.userHeartbeatBar" class="col-3 col-sm-3 col-md-4">
                                         <HeartbeatBar size="mid" :monitor-id="monitor.element.id" />
                                     </div>
                                 </div>
