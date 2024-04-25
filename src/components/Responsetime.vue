@@ -35,11 +35,15 @@ export default {
                     return el.ping;
                 });
 
-                console.log(data);
+                if (data.length > 0) {
+                    console.log(average(data));
+                    return average(data);
+                }
+                
 
                 // Only perform sanity check on status page. See louislam/uptime-kuma#2628
                
-                return 150;// average(data).toString().split(".")[1] + " ms";
+                return null;// average(data).toString().split(".")[1] + " ms";
                 
             }
         },
