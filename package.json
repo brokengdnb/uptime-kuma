@@ -21,6 +21,7 @@
         "start-frontend-dev": "cross-env NODE_ENV=development vite --host --config ./config/vite.config.js",
         "start-frontend-devcontainer": "cross-env NODE_ENV=development DEVCONTAINER=1 vite --host --config ./config/vite.config.js",
         "start": "npm run start-server",
+        "docker-run": "npm i && npm build && node server/server.js",
         "start-server": "cross-env NODE_ENV=development PORT=3000 UPTIME_KUMA_HOST=127.0.0.1 node server/server.js",
         "start-server-dev": "cross-env NODE_ENV=development node server/server.js",
         "start-server-dev:watch": "cross-env NODE_ENV=development node --watch server/server.js",
