@@ -7,7 +7,9 @@ WORKDIR /app/data
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y git
+
 RUN git clone https://github.com/brokengdnb/uptime-kuma .
+
 RUN npm install --no-update-notifier
 RUN npm run build 
 
